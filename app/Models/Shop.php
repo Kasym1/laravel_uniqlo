@@ -6,21 +6,21 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Product extends Model
+class Shop extends Model
 {
     use HasFactory;
 
-    use softDeletes;
+    use SoftDeletes;
 
-    protected $table = 'products';
+    protected $table = 'shops';
 
     protected $guarded = false;
 
     protected $fillable = [
-        'snikers',
-        'msm',
-        'marshmello',
-        'nutella',
-        'mars',
+        'name',
+        'clients',
+        'location',
+        'director',
+        'workers',
     ];
 }

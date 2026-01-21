@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts_table2', function (Blueprint $table) {
+        Schema::create('shops', function (Blueprint $table) {
             $table->id();
-            $table->string('kasym');
-            $table->string('ibrahim');
-            $table->string('hamza');
-            $table->string('umar');
-            $table->string('yusuf');
-            $table->string('bilal');
+            $table->string('name');
+            $table->unsignedBigInteger('clients')->nullable();
+            $table->string('location');
+            $table->string('director');
+            $table->string('workers');
             $table->timestamps();
 
             $table->softDeletes();
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts_table2');
+        Schema::dropIfExists('shops');
     }
 };

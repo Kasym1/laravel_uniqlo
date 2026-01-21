@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('ferari');
             $table->string('lamborgini');
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

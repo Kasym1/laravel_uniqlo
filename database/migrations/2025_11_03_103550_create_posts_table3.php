@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('nutella');
             $table->string('mars');
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 
