@@ -22,6 +22,7 @@ class Post extends Model
         'likes',
         'is_published',
         'category_id',
+        'tags',
     ];
 
     public function category(){

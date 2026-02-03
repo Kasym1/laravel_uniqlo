@@ -6,6 +6,13 @@ use App\Http\Controllers\MainControllers\PostController;
 use App\Http\Controllers\MainControllers\PostController2;
 use App\Http\Controllers\MainControllers\ProductController;
 use App\Http\Controllers\MainControllers\ShopController;
+use App\Http\Controllers\Post\CreateController;
+use App\Http\Controllers\Post\DestroyController;
+use App\Http\Controllers\Post\EditController;
+use App\Http\Controllers\Post\IndexController;
+use App\Http\Controllers\Post\ShowController;
+use App\Http\Controllers\Post\StoreController;
+use App\Http\Controllers\Post\UpdateController;
 use App\Http\Controllers\SecondViewControllers\FollowerController;
 use App\Http\Controllers\SecondViewControllers\HomeController;
 use App\Http\Controllers\SecondViewControllers\WorkerController;
@@ -31,6 +38,16 @@ Route::get('/', function () {
 
 Route::get('/touch', function () {
     return 'Kasym salam';
+});
+
+Route::group(['namespace' => 'Post'], function () {
+    Route::get('/instagram', [IndexController::class])->name('post.index');
+    Route::get('/instagram/create', [CreateController::class])->name('post.create');
+    Route::post('/instagram', [StoreController::class])->name('post.store');
+    Route::get('/instagram/{post}', [ShowController::class])->name('post.show');
+    Route::get('/instagram/{post}/edit', [EditController::class])->name('post.edit');
+    Route::patch('/instagram/{post}', [UpdateController::class])->name('post.update');
+    Route::delete('/instagram/{post}', [DestroyController::class])->name('post.delete');
 });
 
 Route::get('/abouts', [AboutController::class, 'abouts'])->name('about.index');

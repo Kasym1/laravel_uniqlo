@@ -26,10 +26,22 @@
                         <option value="{{ $category->id }}"
                             @selected($category->id == $post->category_id)>
                             {{ $category->title }}
-                        value="{{$category->id}}">{{$category->title}}</option>
+                        </option>
                     @endforeach
-            </select>
-        </div>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tags">Tags</label>
+                <select multiple class="form-control" id="tags" name="tags[]">
+                    @foreach($tags as $tag)
+                        <option
+                            @foreach($post->tags as $postTag)
+                                {{$tag->id === $postTag->id ? 'selected' : ''}}
+                                value="{{$tag->id}}">{{$tag->title}}</option>
+                    @endforeach
+                    @endforeach
+                </select>
+            </div>
             <button type="submit" class="btn btn-primary">Update</button>
         </div>
     </form>
