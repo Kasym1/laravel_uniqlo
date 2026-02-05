@@ -39,32 +39,39 @@ Route::get('/', function () {
 Route::get('/touch', function () {
     return 'Kasym salam';
 });
-
-Route::group(['namespace' => 'Post'], function () {
-    Route::get('/instagram', [IndexController::class])->name('post.index');
-    Route::get('/instagram/create', [CreateController::class])->name('post.create');
-    Route::post('/instagram', [StoreController::class])->name('post.store');
-    Route::get('/instagram/{post}', [ShowController::class])->name('post.show');
-    Route::get('/instagram/{post}/edit', [EditController::class])->name('post.edit');
-    Route::patch('/instagram/{post}', [UpdateController::class])->name('post.update');
-    Route::delete('/instagram/{post}', [DestroyController::class])->name('post.delete');
-});
-
 Route::get('/abouts', [AboutController::class, 'abouts'])->name('about.index');
 Route::get('/main', [MainController::class, 'main'])->name('main.index');
 Route::get('/contacts', [ContactController::class, 'contacts'])->name('contact.index');
+
+Route::get('/instagram', IndexController::class)->name('post.index');
+Route::get('/instagram/create', CreateController::class)->name('post.create');
+Route::post('/instagram', StoreController::class)->name('post.store');
+Route::get('/instagram/{post}', ShowController::class)->name('post.show');
+Route::get('/instagram/{post}/edit', EditController::class)->name('post.edit');
+Route::patch('/instagram/{post}', UpdateController::class)->name('post.update');
+Route::delete('/instagram/{post}', DestroyController::class)->name('post.delete');
+
+//Route::group(['namespace' => 'Post'], function () {
+//    Route::get('/instagram', [IndexController::class])->name('post.index');
+//    Route::get('/instagram/create', [CreateController::class])->name('post.create');
+//    Route::post('/instagram', [StoreController::class])->name('post.store');
+//    Route::get('/instagram/{post}', [ShowController::class])->name('post.show');
+//    Route::get('/instagram/{post}/edit', [EditController::class])->name('post.edit');
+//    Route::patch('/instagram/{post}', [UpdateController::class])->name('post.update');
+//    Route::delete('/instagram/{post}', [DestroyController::class])->name('post.delete');
+//});
 
 Route::get('/home', [HomeController::class, 'home'])->name('home.index');
 Route::get('/workers', [WorkerController::class, 'workers'])->name('worker.index');
 Route::get('/followers', [FollowerController::class, 'followers'])->name('follower.index');
 
-Route::get('/instagram', [PostController::class, 'instagram'])->name('post.index');
-Route::get('/instagram/create', [PostController::class, 'create'])->name('post.create');
-Route::post('/instagram', [PostController::class, 'store'])->name('post.store');
-Route::get('/instagram/{post}', [PostController::class, 'show'])->name('post.show');
-Route::get('/instagram/{post}/edit', [PostController::class, 'edit'])->name('post.edit');
-Route::patch('/instagram/{post}', [PostController::class, 'update'])->name('post.update');
-Route::delete('/instagram/{post}', [PostController::class, 'destroy'])->name('post.delete');
+//Route::get('/instagram', [PostController::class, 'instagram'])->name('post.index');
+//Route::get('/instagram/create', [PostController::class, 'create'])->name('post.create');
+//Route::post('/instagram', [PostController::class, 'store'])->name('post.store');
+//Route::get('/instagram/{post}', [PostController::class, 'show'])->name('post.show');
+//Route::get('/instagram/{post}/edit', [PostController::class, 'edit'])->name('post.edit');
+//Route::patch('/instagram/{post}', [PostController::class, 'update'])->name('post.update');
+//Route::delete('/instagram/{post}', [PostController::class, 'destroy'])->name('post.delete');
 
 Route::get('/products', [ProductController::class, 'products'])->name('product.index');
 Route::get('/products/create', [ProductController::class, 'create'])->name('product.create');

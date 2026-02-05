@@ -3,15 +3,20 @@
 namespace App\Http\Controllers\Post;
 
 use App\Http\Controllers\Controller;
+use App\Http\Filters\PostFilter;
+use App\Http\Requests\Post\FilterRequest;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
-use JetBrains\PhpStorm\NoReturn;
+use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
-public function __invoke()
-{
-    $posts = Post::paginate(10);
-    return view('post.index', compact('posts'));}
+    public function __invoke(FilterRequest $request)
+    {
+        $data = $request->validated();
+        $filter = app()->make(PostFilter::class, ['QueryParams' => array_filter($data)]);
+        $posts = Post::fillter($filter)->paginate(10);
+        return view('post.index', compact('posts'));
+    }
 }

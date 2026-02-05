@@ -13,7 +13,7 @@ class PostController extends Controller
     #[NoReturn]
     public function instagram()
     {
-        $posts = Post::all();
+        $posts = Post::paginate(10);
         return view('post.index', compact('posts'));
     }
 
@@ -27,7 +27,7 @@ class PostController extends Controller
     public function store()
     {
         $data = request()->validate([
-            'title' => 'required|string',
+            'title' => 'string',
             'content' => 'string',
             'image' => 'string',
             'category_id' => '',
@@ -62,9 +62,8 @@ class PostController extends Controller
             'title' => 'string',
             'content' => 'string',
             'image' => 'string',
-            'category_id' => 'required|exists:categories,id',
-            'tags' => 'array',
-            'tags.*' => 'exists:tags,id',
+            'category_id' => '',
+            'tags' => '',
         ]);
         $tags = $data['tags'];
         unset($data['tags']);
